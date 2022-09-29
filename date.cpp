@@ -78,3 +78,59 @@ Date Date::operator+(int days)
 
     return newDate;
 }
+bool Date ::operator>(Date date) const
+{
+    if (this->isEmpty() || date.isEmpty())
+    {
+        return false;
+    }
+    int yearDiff = this->date.tm_year - date.date.tm_year;
+    int monthDiff = this->date.tm_mon - date.date.tm_mon;
+    int dayDiff = this->date.tm_mday - date.date.tm_mday;
+
+    if (yearDiff != 0)
+    {
+        return yearDiff > 0;
+    }
+    else if (monthDiff != 0)
+    {
+        return monthDiff > 0;
+    }
+    else
+    {
+        return dayDiff > 0;
+    }
+}
+bool Date ::operator>=(Date date) const
+{
+    return !(*this < date);
+}
+bool Date ::operator<(Date date) const
+{
+    if (this->isEmpty() || date.isEmpty())
+    {
+        return false;
+    }
+
+    int yearDiff = this->date.tm_year - date.date.tm_year;
+    int monthDiff = this->date.tm_mon - date.date.tm_mon;
+    int dayDiff = this->date.tm_mday - date.date.tm_mday;
+
+    if (yearDiff != 0)
+    {
+        return yearDiff < 0;
+    }
+    else if (monthDiff != 0)
+    {
+        return monthDiff < 0;
+    }
+    else
+    {
+        return dayDiff < 0;
+    }
+}
+
+bool Date ::operator<=(Date date) const
+{
+    return !(*this > date);
+}
